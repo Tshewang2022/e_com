@@ -1,5 +1,7 @@
 <template>
-  <h1>this will be the meal list components</h1>
+  <div>
+    <h1>this will be the meal list components</h1>
+  </div>
 </template>
 
 <script setup>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
+import MealList from "../views/MealList.vue";
 
 const routes = [
   {
@@ -12,6 +13,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+
+  // mapping with the id
+  {
+    path: "/letters/:letter",
+    name: "byLetter",
+    component: MealList,
   },
 ];
 
