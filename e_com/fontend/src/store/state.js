@@ -1,3 +1,4 @@
 export default {
-  meals: ["Salmon"],
+  // this is just an object nothing related to anything
+  searchedMeals: [],
 };

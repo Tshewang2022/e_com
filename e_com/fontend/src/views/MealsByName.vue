@@ -1,23 +1,30 @@
 <template>
   <div class="flex p-8 justify-center items-center">
+    <!-- when the change events happened inside -->
     <input
       type="text"
-      name=""
       v-model="keyword"
       class="rounded border-2 border-gray-200 w-full"
       placeholder="Search for Meals"
       @change="searchMeals"
-      id=""
     />
   </div>
+  <div>
+    <pre>{{ meals }}</pre>
+  </div>
 </template>
-<script>
-import axiosClient from "../axiosClient";
+<script setup>
+import { computed, ref } from "vue";
+
+import store from "../store";
 
 const keyword = ref("");
+const meals = computed(() => {
+  store.state.searchedMeals;
+});
 
 // will create the function that will search the meals
 function searchMeals() {
-  axiosClient.get(`search.php?s=${keyword.value}`);
+  store.dispatch("searchMeals", keyword.value);
 }
 </script>

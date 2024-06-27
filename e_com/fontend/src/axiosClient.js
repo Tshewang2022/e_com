@@ -5,5 +5,4 @@ const axiosClient = axios.create({
   //timeout: 1000,
   // headers: { "X-Custom-Header": "footer" },
 });
-
 export default axiosClient;
