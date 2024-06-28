@@ -12,6 +12,16 @@
   <div>
     <pre>{{ meals }}</pre>
   </div>
+  <div class="bg-red-900">
+    <div v-for="meal of meals" :key="meal.idMeal">
+      <img :src="meal.strMealThumb" alt="strMeal" />
+      <h3>{{ meal.strMeal }}</h3>
+      <div>
+        <a :href="meal.strYoutube" target="_bank">Youtube</a>
+        <!-- <router-link to="/" target="_bank">View</router-link> -->
+      </div>
+    </div>
+  </div>
 </template>
 <script setup>
 import { computed, ref } from "vue";
@@ -19,9 +29,7 @@ import { computed, ref } from "vue";
 import store from "../store";
 
 const keyword = ref("");
-const meals = computed(() => {
-  store.state.searchedMeals;
-});
+const meals = computed(() => store.state.searchMeals);
 
 // will create the function that will search the meals
 function searchMeals() {

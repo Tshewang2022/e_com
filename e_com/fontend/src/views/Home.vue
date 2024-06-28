@@ -9,7 +9,7 @@
     </router-link>
   </div>
 
-  <pre>{{ meals }}</pre>
+  <!-- <pre>{{ meals }}</pre> -->
   <div>
     <pre>{{ ingredients }}</pre>
   </div>
@@ -17,17 +17,17 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import store from "../store";
+// import store from "../store";
 import axiosClient from "../axiosClient";
 
 // will loop over this one and display on the page
 const letters = "qwehroweoruowuebfbkhf".split("");
-const meals = computed(() => store.state.meals);
+//const meals = computed(() => store.state.searchedMeals);
 const ingredients = ref([""]);
 
 onMounted(async () => {
   const response = await axiosClient.get("/list.php?i=list");
-  console.log(response.data);
+  //console.log(response.data);
   ingredients.value = response.data;
 });
 </script>
