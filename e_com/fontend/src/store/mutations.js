@@ -3,5 +3,5 @@
 // }
 
 export const setSearchedMeals = (state, meals) => {
-  state.searchMeals = meals || [];
+  state.searchedMeals = meals || [];
 };

@@ -5,10 +5,10 @@ import axiosClient from "../axiosClient";
 //     // debugger;
 //     commit(`setSearchedMeals`, data);
 //   });
-//}
+// }
 
-export const searchMeals = async ({ commit }, keyword) => {
-  await axiosClient.get(`search.php?s=${keyword}`).then(({ data }) => {
+export const searchMeals = ({ commit }, keyword) => {
+  axiosClient.get(`search.php?s=${keyword}`).then(({ data }) => {
     commit(`setSearchedMeals`, data);
   });
 };
