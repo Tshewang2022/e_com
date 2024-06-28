@@ -21,13 +21,16 @@
         <router-link to="/" target="_bank">View</router-link>
       </div>
     </div> -->
-    <div>
+    <div v-if="meals.length > 0">
+      <!-- this is not getting read, i dont know why -->
       <div v-for="meal of meals" :key="meal.idMeal">
-        <img
-          :src="meal.strMealThumb"
-          :alt="meal.strMeal"
-          class="h-full w-full"
-        />
+        <router-link :to="{ name: 'mealDetails', params: { id: meal.idMeal } }">
+          <img
+            :src="meal.strMealThumb"
+            :alt="meal.strMeal"
+            class="h-full w-full"
+          />
+        </router-link>
         <h3>{{ meal.strMeal }}</h3>
         <p>{{ meal.strInstructions }}</p>
         <div>
@@ -39,15 +42,27 @@
   </div>
 </template>
 <script setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import store from "../store";
+import { useRoute } from "vue-router";
 
 const keyword = ref("");
 const meals = computed(() => store.state.searchedMeals);
+
+// adding the functionality by routes
+const route = useRoute();
 
 // will create the function that will search the meals
 function searchMeals() {
   store.dispatch("searchMeals", keyword.value);
 }
+
+// this function will be called, when the route is being mounted
+onMounted(() => {
+  keyword.value = route.params.name;
+  if (keyword.value) {
+    searchMeals();
+  }
+});
 </script>
