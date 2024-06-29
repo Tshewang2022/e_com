@@ -15,6 +15,13 @@
   </div>
   <div>
     <h1>Ingredients</h1>
+    <ul>
+      <template v-for="(ei, ind) of new Array(20)"> </template>
+      <li v-if="meal[`strIngredient${ind + 1}`]">
+        {{ ind + 1 }}.
+        {{ meal[`strIngredient${ind + 1}`] }}
+      </li>
+    </ul>
   </div>
   <div>
     <h2>Measures</h2>
