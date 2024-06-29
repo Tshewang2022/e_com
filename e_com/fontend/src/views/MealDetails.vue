@@ -1,7 +1,23 @@
 <template>
   <div>
+    <pre>{{ meal }}</pre>
     <h1>{{ meal.strMeal }}</h1>
     <img :src="meal.strMealThumb" :alt="meal.strMeal" />
+    <div>
+      <div>category: {{ meal.strCategory }}</div>
+    </div>
+    <div>
+      <div>Area: {{ strArea }}</div>
+    </div>
+    <div>
+      <div>Tags :{{ strTags }}</div>
+    </div>
+  </div>
+  <div>
+    <h1>Ingredients</h1>
+  </div>
+  <div>
+    <h2>Measures</h2>
   </div>
   <pre>{{ meal }}</pre>
 </template>
