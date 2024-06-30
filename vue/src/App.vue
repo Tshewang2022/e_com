@@ -1,31 +1,48 @@
+<script setup>
+import { ref } from "vue";
+
+const showModal = ref(false);
+const newNote = ref("");
+const notes = ref([]);
+
+// function to get the random color
+function getRandomColor() {
+  return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+}
+const addNote = () => {
+  notes.value.push({
+    id: Math.floor(Math.random() * 10000),
+    text: newNote.value,
+    date: new Date(),
+    backgroundColor: getRandomColor(),
+  });
+  showModal.value = false;
+  newNote.value = "";
+};
+</script>
 <template>
   <main>
-    <div class="overlay">
+    <div v-if="showModal" class="overlay">
       <div class="modal">
-        <textarea name="note" id="note" rows="10"> </textarea>
-        <button class="modal-btn">Add Note</button>
-        <button class="close">close</button>
+        <textarea v-model="newNote" name="note" id="note" rows="10"> </textarea>
+        <button class="modal-btn" @click="addNote">Add Note</button>
+        <button @click="showModal = false" class="close">close</button>
       </div>
     </div>
     <div class="container">
       <header>
         <h1>Notes</h1>
-        <button>+</button>
+        <button @click="showModal = true">+</button>
       </header>
       <div class="cards-container">
-        <div class="card">
-          <p class="main-tex">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-            delectus.
-          </p>
-          <p class="date">30/10/2024</p>
-        </div>
-        <div class="card">
-          <p class="main-tex">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-            delectus.
-          </p>
-          <p class="date">30/10/2024</p>
+        <div
+          v-for="note in notes"
+          :key="note.id"
+          class="card"
+          :style="{ backgroundColor: note.backgroundColor }"
+        >
+          <p class="main-tex">{{ note.text }}</p>
+          <p class="date">{{ note.date.toLocaleDateString("en-US") }}</p>
         </div>
       </div>
     </div>
