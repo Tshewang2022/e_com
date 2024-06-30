@@ -4,12 +4,16 @@ import { ref } from "vue";
 const showModal = ref(false);
 const newNote = ref("");
 const notes = ref([]);
-
+const errorMessage = ref("");
 // function to get the random color
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
 const addNote = () => {
+  if (newNote.value.length < 9) {
+    return (errorMessage.value =
+      "Notes need to be more than 10 character or more");
+  }
   notes.value.push({
     id: Math.floor(Math.random() * 10000),
     text: newNote.value,
@@ -18,13 +22,16 @@ const addNote = () => {
   });
   showModal.value = false;
   newNote.value = "";
+  errorMessage.value = "";
 };
 </script>
 <template>
   <main>
     <div v-if="showModal" class="overlay">
       <div class="modal">
-        <textarea v-model="newNote" name="note" id="note" rows="10"> </textarea>
+        <textarea v-model.trim="newNote" name="note" id="note" rows="10">
+        </textarea>
+        <p v-if="errorMessage">{{ errorMessage }}</p>
         <button class="modal-btn" @click="addNote">Add Note</button>
         <button @click="showModal = false" class="close">close</button>
       </div>
@@ -50,6 +57,9 @@ const addNote = () => {
 </template>
 
 <style scoped>
+.modal p {
+  color: red;
+}
 main {
   height: 100vh;
   width: 100vw;
