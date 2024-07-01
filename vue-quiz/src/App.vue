@@ -1,15 +1,32 @@
+<script setup>
+import q from "./data/quizes.json";
+import { ref, watch } from "vue";
+
+const quizes = ref(q);
+
+// adding the search functionality
+const search = ref("");
+
+// will be done by the watch for making the search-> this is the awesome functionality
+watch(search, () => {
+  quizes.value = q.filter((quiz) =>
+    quiz.name.toLowerCase().includes(search.value.toLowerCase())
+  );
+});
+</script>
 <template>
   <div class="container">
     <header>
       <h1>Quizes</h1>
-      <input type="text" placeholder="Search..." />
+      <!-- trim for triming the white spaces -->
+      <input v-model.trim="search" type="text" placeholder="Search..." />
     </header>
     <div class="options-container">
-      <div class="card">
-        <img src="" alt="" />
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
+        <img :src="quiz.img" alt="math" />
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 Questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }}questions</p>
         </div>
       </div>
     </div>
@@ -47,5 +64,22 @@ header input {
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 35px;
   margin-right: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  margin: 0;
+}
+.card .card-text {
+  padding: 0 5px;
+}
+.card .card-text h2 {
+  font-weight: bold;
+}
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
 }
 </style>
