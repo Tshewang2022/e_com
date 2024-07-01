@@ -1,10 +1,9 @@
 import AboutView from "@/views/AboutView.vue";
 import HomeView from "@/views/HomeView.vue";
 import CarView from "@/views/CarView.vue";
-
-import { createRouter, createWebHistory } from "vue-router";
-
+import NotFoundView from "@/views/ContactView.vue";
 import ContactView from "@/views/ContactView.vue";
+import { createRouter, createWebHistory } from "vue-router";
 const routes = [
   {
     path: "/",
@@ -26,6 +25,11 @@ const routes = [
         component: ContactView,
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFoundView,
   },
 ];
 const router = createRouter({

@@ -10,7 +10,7 @@ const car = cars.find((c) => c.id === carId);
 //console.log(route);
 </script>
 <template>
-  <div>
+  <div v-if="car">
     <h1>Car View</h1>
     <p>{{ car.name }}</p>
     <p>{{ car.year }}</p>
@@ -19,5 +19,9 @@ const car = cars.find((c) => c.id === carId);
       Click For contact
     </button>
     <RouterView />
+  </div>
+  <div v-else>
+    <!-- this is the error that we are going to get if the given car object is undefined -->
+    <h1>Car not found</h1>
   </div>
 </template>
