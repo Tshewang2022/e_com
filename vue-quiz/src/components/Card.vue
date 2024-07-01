@@ -8,7 +8,7 @@ console.log(quiz);
     <img :src="quiz.img" alt="math" />
     <div class="card-text">
       <h2>{{ quiz.name }}</h2>
-      <p>{{ quiz.questions.length }}questions</p>
+      <p>{{ quiz.questions.length }} Questions</p>
     </div>
   </div>
 </template>
@@ -33,10 +33,5 @@ console.log(quiz);
 }
 .card .card-text h2 {
   font-weight: bold;
-}
-.options-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 40px;
 }
 </style>

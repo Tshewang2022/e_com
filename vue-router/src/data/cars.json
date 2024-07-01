@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Chevy",
+    "price": 1200,
+    "year": 2024,
+    "contact": {
+      "dealer": "fish",
+      "number": "111-11-111"
+    }
+  },
+  {
+    "id": 2,
+    "name": "BMW",
+    "price": 1200,
+    "year": 2024,
+    "contact": {
+      "dealer": "fish",
+      "number": "111-11-111"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Land Rover",
+    "price": 1200,
+    "year": 2024,
+    "contact": {
+      "dealer": "fish",
+      "number": "111-11-111"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Lem",
+    "price": 1200,
+    "year": 2024,
+    "contact": {
+      "dealer": "fish",
+      "number": "111-11-111"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Nissan",
+    "price": 1200,
+    "year": 2024,
+    "contact": {
+      "dealer": "fish",
+      "number": "111-11-111"
+    }
+  }
+]
