@@ -9,6 +9,8 @@ const errorMessage = ref("");
 function getRandomColor() {
   return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
 }
+
+// this for adding the newnotes
 const addNote = () => {
   if (newNote.value.length < 9) {
     return (errorMessage.value =
