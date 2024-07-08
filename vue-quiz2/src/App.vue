@@ -1,6 +1,12 @@
 <script setup>
 import { ref } from "vue";
 
+// this is just the raw data
+import q from "./data/quizes.json";
+
+// we need to store inside something called state, where we need to store so that we can shared inside it
+const quizes = ref(q);
+
 const showQuestion = ref(true);
 const toggleVisibility = () => {
   showQuestion.value = !showQuestion.value;
@@ -39,7 +45,7 @@ const toggleVisibility = () => {
         </div>
       </div>
     </div>
-    <header class="flex justify-start gap-[32px] mb-8">
+    <header class="flex justify-start gap-[32px] mt-[30px] mb-[10px]">
       <h1>Quizes</h1>
       <input
         type="text"
@@ -52,30 +58,12 @@ const toggleVisibility = () => {
     <div
       class="cards flex justify-center items-center gap-[32px] max-w-[1050px] sm:w-flex-col"
     >
-      <div @click="showQuestion = false">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl-cQjiF7rHZpXl5Nps_LCEmp2Z8k_gQHVgQ&s"
-          alt="math"
-        />
-        <h2>Math</h2>
-        <p>3 Questions</p>
-        <button @click="toggleVisibility">click me</button>
-      </div>
-      <div>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl-cQjiF7rHZpXl5Nps_LCEmp2Z8k_gQHVgQ&s"
-          alt="math"
-        />
-        <h2>Math</h2>
-        <p>3 Questions</p>
-      </div>
-      <div>
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl-cQjiF7rHZpXl5Nps_LCEmp2Z8k_gQHVgQ&s"
-          alt="math"
-        />
-        <h2>Math</h2>
-        <p>3 Questions</p>
+      <div v-for="quiz in quizes" :key="quiz.id">
+        <img :src="quiz.img" alt="math" />
+        <div>
+          <h2>{{ quiz.name }}</h2>
+          <p>3 Questions</p>
+        </div>
       </div>
     </div>
   </div>
