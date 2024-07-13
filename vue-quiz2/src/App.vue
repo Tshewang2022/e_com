@@ -1,11 +1,20 @@
 <script setup>
-import { ref } from "vue";
-
+import { ref, watch } from "vue";
 // this is just the raw data
 import q from "./data/quizes.json";
 
 // we need to store inside something called state, where we need to store so that we can shared inside it
 const quizes = ref(q);
+
+// anything that we need to deal with the textarea and input, we need two way binding
+const search = ref("");
+
+watch(search, ()=>{
+
+quizes.value = q.filter((quiz)=>{return quiz.name.toLowerCase().includes(search.value.toLowerCase())})
+  // very excellent way of handeling the errros
+  // console.log('hello from  watch');
+})
 
 const showQuestion = ref(true);
 const toggleVisibility = () => {
@@ -47,7 +56,7 @@ const toggleVisibility = () => {
     </div>
     <header class="flex justify-start gap-[32px] mt-[30px] mb-[10px]">
       <h1>Quizes</h1>
-      <input
+      <input v-model.trim="search"
         type="text"
         placeholder="Search..."
         class="border-2 border-gray-400 pl-[10px]"
